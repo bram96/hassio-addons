@@ -21,12 +21,6 @@ FROM build-base AS mopidy-mpd
 RUN pip3 install --no-cache-dir --user Mopidy-MPD==3.3.0 &&\
     ls -al /root/.local/lib/python3.11/site-packages
 
-
-FROM build-base AS mopidy-radionet
-
-RUN pip3 install --no-cache-dir --user Mopidy-RadioNet==0.2.2 &&\
-    ls -al /root/.local/lib/python3.11/site-packages
-
 FROM build-base AS mopidy-local
 
 RUN pip3 install --no-cache-dir --user Mopidy-Local==3.2.1 &&\
@@ -45,7 +39,6 @@ RUN apk add --no-cache \
 
 COPY --from=mopidy-iris /root/.local/lib/python3.11/site-packages /usr/lib/python3.10/site-packages/
 COPY --from=mopidy-mpd /root/.local/lib/python3.11/site-packages /usr/lib/python3.10/site-packages/
-COPY --from=mopidy-radionet /root/.local/lib/python3.11/site-packages /usr/lib/python3.10/site-packages/
 COPY --from=mopidy-local /root/.local/lib/python3.11/site-packages /usr/lib/python3.10/site-packages/
 
 RUN echo "root ALL=NOPASSWD: /usr/lib/python3.11/site-packages/mopidy_iris/system.sh" >> /etc/sudoers
