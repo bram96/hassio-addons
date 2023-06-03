@@ -1,5 +1,5 @@
-name: Mopidy-l
-version: 2.2.0
+name: Mopidy
+version: 1.0.0
 slug: mopidy
 panel_icon: mdi:music-circle
 description: Mopidy Music Server
@@ -31,17 +31,9 @@ options:
   playlist_folder: /media/mopidy/playlists
   locale: en_US
   country: en
-  radio_net:
-    language: net
-    favorite_radiostations:
-      - radiobob
 schema:
   media_folder: match(/share/.+|/media/.+|(smb|nfs)://.+)
   playlist_folder: match(/share/.+|/media/.+|(smb|nfs)://.+)
   custom_config: match(/share/mopidy/.+)?
   locale: match([a-z]{2}_[A-Z{2}])
   country: match([a-z]{2})
-  radio_net:
-    language: list(net|at|de|dk|es|fr|it|pl|pt|se)
-    favorite_radiostations:
-      - str

@@ -5,9 +5,6 @@ media_folder: /media/mopidy/media
 playlist_folder: /media/mopidy/playlists
 locale: en_US
 country: en
-radio_net:
-  language: net
-  favorite_radiostations: []
 ```
 
 ### `media_folder`
@@ -28,14 +25,6 @@ Default is `en_US` A list of locale's is [here](https://github.com/umpirsky/loca
 Your country as two letter country code. This used for the ui and also some extensions.
 Default here is is the code `en`.
 
-### `radio_net/language`
-
-The language text information is shown for radio stations. Possible options are: `net`, `at`, `de` , `dk`, `es`, `fr`, `it`, `pl`, `pt`, `se`.
-
-### `radio_net/favorite_radiostations`
-
-Your favorite radio station slugs for the radio.net Extension. [More about that setting](https://github.com/plintx/mopidy-radionet#configuration).
-
 ### `custom_config` (optional)
 
 **If this is specified, all other options are ignored.**
@@ -47,7 +36,6 @@ Please use the default [mopidy.conf of the addon](https://github.com/Poeschl/Has
 Working example:
 
 ```yaml
-
 ---
 custom_config: /share/mopidy/mopidy.conf
 ```
