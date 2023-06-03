@@ -7,7 +7,7 @@ RUN apk add --no-cache \
     py3-gst=1.22.3-r0 \
     py3-pip=23.1.2-r0 \
     mopidy=3.4.1-r1 \
-    && ln -s /usr/lib/libpython3.10.so.1.0 /usr/lib/libpython3.10.so
+    && ln -s /usr/lib/libpython3.11.so.1.0 /usr/lib/libpython3.11.so
 
 
 FROM build-base AS mopidy-iris
@@ -35,11 +35,11 @@ RUN apk add --no-cache \
     mopidy=3.4.1-r1 \
     ca-certificates=20230506-r0 \
     sudo=1.9.13_p3-r2 \
-    && ln -s /usr/lib/libpython3.10.so.1.0 /usr/lib/libpython3.10.so
+    && ln -s /usr/lib/libpython3.11.so.1.0 /usr/lib/libpython3.11.so
 
-COPY --from=mopidy-iris /root/.local/lib/python3.11/site-packages /usr/lib/python3.10/site-packages/
-COPY --from=mopidy-mpd /root/.local/lib/python3.11/site-packages /usr/lib/python3.10/site-packages/
-COPY --from=mopidy-local /root/.local/lib/python3.11/site-packages /usr/lib/python3.10/site-packages/
+COPY --from=mopidy-iris /root/.local/lib/python3.11/site-packages /usr/lib/python3.11/site-packages/
+COPY --from=mopidy-mpd /root/.local/lib/python3.11/site-packages /usr/lib/python3.11/site-packages/
+COPY --from=mopidy-local /root/.local/lib/python3.11/site-packages /usr/lib/python3.11/site-packages/
 
 RUN echo "root ALL=NOPASSWD: /usr/lib/python3.11/site-packages/mopidy_iris/system.sh" >> /etc/sudoers
 
