@@ -3,8 +3,8 @@ ARG BUILD_FROM=ghcr.io/home-assistant/amd64-base:3.18
 FROM $BUILD_FROM AS build-base
 
 RUN apk add --no-cache \
-    python3=3.11.3-r11 \
-    py3-gst=1.22.3-r0 \
+    python3=3.11.5-r0 \
+    py3-gst=1.22.5-r0 \
     py3-pip=23.1.2-r0 \
     mopidy=3.4.1-r1 \
     && ln -s /usr/lib/libpython3.11.so.1.0 /usr/lib/libpython3.11.so
@@ -12,7 +12,7 @@ RUN apk add --no-cache \
 
 FROM build-base AS mopidy-iris
 
-RUN pip3 install --no-cache-dir --user Mopidy-Iris==3.67.0 &&\
+RUN pip3 install --no-cache-dir --user Mopidy-Iris==3.68.0 &&\
     ls -al /root/.local/lib/python3.11/site-packages
 
 
@@ -30,8 +30,8 @@ RUN pip3 install --no-cache-dir --user Mopidy-Local==3.2.1 &&\
 FROM $BUILD_FROM AS run
 
 RUN apk add --no-cache \
-    python3=3.11.3-r11 \
-    py3-gst=1.22.3-r0 \
+    python3=3.11.5-r0 \
+    py3-gst=1.22.5-r0 \
     mopidy=3.4.1-r1 \
     ca-certificates=20230506-r0 \
     sudo=1.9.13_p3-r2 \
