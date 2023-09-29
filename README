@@ -1,0 +1,3 @@
+Create fifo 
+
+`mknod spotify-connect-web-chroot/tmp/snapfifo p`
