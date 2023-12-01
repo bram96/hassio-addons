@@ -1,6 +1,6 @@
 name: Snapcast Server
-version: 1.0.0
-slug: snapcast server
+version: 1.0.3
+slug: snapcast-server
 panel_icon: mdi:music-circle
 description: Snapcast Server
 url: https://github.com/bram96/Hassio-Addons/tree/main/snapcast-server
@@ -15,7 +15,6 @@ arch:
   - i386
 homeassistant: 0.115.0
 startup: system
-#image: ghcr.io/poeschl/ha-mopidy-{arch}
 init: false
 audio: true
 devices:
@@ -26,6 +25,7 @@ ports:
   1704/tcp: 1704
   1705/tcp: 1705
   1780/tcp: 1780
+  4954/tcp: 4954
 ports_description:
   1704/tcp: Snapcast client connections
   1705/tcp: Snapcast's control interface

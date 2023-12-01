@@ -1,0 +1,32 @@
+name: Mopidy TTS
+version: 1.1.0
+slug: mopidy-tts
+panel_icon: mdi:music-circle
+description: Mopidy Music Server
+url: https://github.com/bram96/Hassio-Addons/tree/master/mopidy-tts
+ingress: true
+ingress_port: 6681
+ingress_entry: mopidy/
+arch:
+  - armv7
+  - armhf
+  - amd64
+  - i386
+homeassistant: 0.115.0
+startup: system
+init: false
+audio: false
+devices:
+  - /dev/snd
+map:
+  - share:rw
+ports:
+  6681/tcp: 6681
+  6601/tcp: 6601
+ports_description:
+  6681/tcp: Mopidy connection
+  6601/tcp: MDP Connection
+options:
+  audio_output: audioresample ! audioconvert ! audio/x-raw,rate=48000,channels=2,format=S16LE ! wavenc ! tcpclientsink host=local-snapcast-server port=4954
+schema:
+  audio_output: match(.*)

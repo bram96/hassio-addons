@@ -1,0 +1,20 @@
+#!/command/with-contenv bashio
+set -e
+
+# Enable Jemalloc for better memory handling
+export LD_PRELOAD="/usr/local/lib/libjemalloc.so.2"
+
+
+mkdir -p /data/database 
+
+if [ "$(bashio::config 'custom_config')" != 'null' ]; then
+	bashio::log.info 'Use custom config'
+    cp "$(bashio::config 'custom_config')" '/etc/mopidy/mopidy.conf'
+else
+
+  bashio::log.info 'Apply addon settings'
+  tempio -conf /data/options.json -template /etc/mopidy-template.conf -out /etc/mopidy/mopidy.conf
+fi
+
+bashio::log.info 'Start Mopidy....'
+mopidy --config /etc/mopidy/mopidy.conf
